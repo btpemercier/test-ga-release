@@ -33,8 +33,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.gitversion.outputs.semVer }}
-          body: |
-            ${{ steps.gitversion.outputs.semVer }}
           generate_release_notes: true
           draft: false
           prerelease: false
