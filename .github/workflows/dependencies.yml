@@ -22,7 +22,7 @@ jobs:
   step-two:
     runs-on: ubuntu-latest
     needs: step-one
-    if: ${{ github.event.inputs.two == 'true' && always() }}
+    if: ${{ github.event.inputs.two == 'true' }}
 
     steps:
       - name: Step 2
