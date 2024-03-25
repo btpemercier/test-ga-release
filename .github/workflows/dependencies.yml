@@ -32,7 +32,7 @@ jobs:
   step-three:
     runs-on: ubuntu-latest
     needs: [step-one, step-two]
-    if: always()
+    if: ${{ always() || !failure() }}
 
     steps:
       - name: Step 3
