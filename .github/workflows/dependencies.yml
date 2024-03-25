@@ -10,24 +10,24 @@ on:
 jobs:
   step-one:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.test == 'true' }}
 
     steps:
       - name: Step 1
+        if: ${{ github.event.inputs.test == 'true' }}
         run: echo "Step 1"
 
   step-two:
     runs-on: ubuntu-latest
     needs: step-one
-    if: always()
 
     steps:
       - name: Step 2
+        if: ${{ github.event.inputs.test == 'true' }}
         run: echo "Step 2"
 
   step-three:
     runs-on: ubuntu-latest
-    needs: [step-one, step-two]
+    needs: step-two
     if: always()
 
     steps:
