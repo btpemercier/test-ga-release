@@ -19,6 +19,7 @@ jobs:
   step-two:
     runs-on: ubuntu-latest
     needs: step-one
+    if: always()
 
     steps:
       - name: Step 2
