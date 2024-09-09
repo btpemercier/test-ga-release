@@ -6,6 +6,9 @@ on:
       plan:
         required: true
         type: boolean
+      plan-failed:
+        required: true
+        type: boolean
       approval:
         required: true
         type: boolean
@@ -17,8 +20,13 @@ jobs:
     name: Plan
 
     steps:
-      - name: Plan
-        run: echo "Plan"
+      - name: Plan Success
+        if: ${{ github.event.inputs.plan-failed == 'false' }}
+        run: echo "Plan Success"
+
+      - name: Plan Failed
+        if: ${{ github.event.inputs.plan-failed == 'true' }}
+        run: echo "Plan Failed"
 
   approval:
     runs-on: ubuntu-latest
