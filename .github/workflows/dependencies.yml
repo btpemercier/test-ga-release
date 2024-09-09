@@ -3,23 +3,39 @@ name: Dependencies
 on:
   workflow_dispatch:
     inputs:
-      one:
+      plan:
         required: true
         type: boolean
-      two:
+      approval:
         required: true
         type: boolean
 
 jobs:
-  step-one:
+  plan:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.one == 'true' }}
+    if: ${{ github.event.inputs.plan == 'true' }}
+    name: Plan
 
     steps:
-      - name: Step 1
-        run: echo "Step 1"
+      - name: Plan
+        run: echo "Plan"
 
-  step-two:
+  approval:
     runs-on: ubuntu-latest
-    needs: step-one
+    if: ${{ github.event.inputs.approval == 'true' }}
+    needs: plan
     environment: job-approval
+    name: Approval
+
+    steps:
+      - name: Approval
+        run: echo "Approval"
+
+  execute:
+    runs-on: ubuntu-latest
+    needs: [plan, approval]
+    name: Execute
+
+    steps:
+      - name: Execute
+        run: echo "Execute"
