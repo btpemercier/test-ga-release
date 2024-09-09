@@ -30,7 +30,7 @@ jobs:
 
   approval:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.approval == 'true' && needs.plan.result == 'success' }}
+    if: ${{ github.event.inputs.approval == 'true' && (needs.plan.result == 'success' || needs.plan.result == 'skipped') }}
     needs: plan
     environment: job-approval
     name: Approval
