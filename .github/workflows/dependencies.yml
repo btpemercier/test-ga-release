@@ -26,9 +26,7 @@ jobs:
 
       - name: Plan Failed
         if: ${{ github.event.inputs.plan-failed == 'true' }}
-        run: |
-          echo "Plan Failed"
-          exit 1
+        run: exit 1
 
   approval:
     runs-on: ubuntu-latest
