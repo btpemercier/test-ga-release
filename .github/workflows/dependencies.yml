@@ -32,7 +32,7 @@ jobs:
 
   approval:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.approval == 'true' && always() }}
+    if: ${{ github.event.inputs.approval == 'true' && (always() || !failure()) }}
     needs: plan
     environment: job-approval
     name: Approval
